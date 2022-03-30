@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border" >
+  <ion-toolbar>
+    <!-- <ion-title>login</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card1">
+    <ion-img src="../../assets/header.png"></ion-img>
+    <ion-card-header>
+      <ion-card-title>
+        <h1>Welcome</h1>
+      </ion-card-title>
+      <ion-card-subtitle>
+        <h5>ETM-App</h5>
+        <h6>[Employee Time Management App]</h6>
+        (This App is helpful to Complete Your task within the specified Time period)
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card class="card2" >
+      <div class="warpform">
+        <ion-item style="color: white;">
+          <ion-icon name="mail-outline"></ion-icon>
+          <ion-input type="text" name="email" [(ngModel)]="email" placeholder="   Email" required>
+          </ion-input>
+        </ion-item>
+        <ion-item style="color: white;">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <ion-input type="text" name="password" [(ngModel)]="Password" placeholder="  **********" required>
+          </ion-input>
+        </ion-item>
+        <br>
+
+        <div class="signin-btn">
+          <ion-button fill="outline" shape="round" color="dark">Login</ion-button>
+        </div>
+        <br>
+        <div>
+          <ion-button fill="solid" shape="round" (click)="onHomePage()" >Skip Login</ion-button>
+        </div>
+      </div>
+    </ion-card>
+
+    <br>
+    <br>
+    <br>
+  </ion-card>
+  <ion-card-subtitle>
+    <div style="margin-top: 40px;">
+    Note : Please use your Cheeta Login Credential to Use this app
+  </div>
+  </ion-card-subtitle>
+</ion-content>

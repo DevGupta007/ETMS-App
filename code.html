@@ -1,0 +1,222 @@
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { interval, Subject } from 'rxjs';
+
+
+export interface Entry {
+  create: Date;
+  id: string;
+}
+
+export interface TimeSpan {
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+@Component({
+  selector: 'app-small-task',
+  templateUrl: './small-task.page.html',
+  styleUrls: ['./small-task.page.scss'],
+})
+export class SmallTaskPage implements OnInit {
+
+  public interval;
+  private destroyed$ = new Subject();
+  newId : string;
+  entries: Entry[] = [];
+
+  constructor(private changeDetector: ChangeDetectorRef) { }
+
+  ngOnInit() {
+
+    this.newId = 'first';
+    this.addEntry();
+
+    interval(1000).subscribe(() => {
+      if(!this.changeDetector['destroyed']) {
+        this.changeDetector.detectChanges();
+      }
+    });
+    this.changeDetector.detectChanges();
+  }
+
+  getElapsedTime(entry: Entry): TimeSpan {
+    let totalSeconds = Math.floor((new Date().getTime() - entry.created.getTime()) / 1000);;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+
+    if(totalSeconds >= 3600){
+      hours = Math.floor(totalSeconds / 3600);
+      totalSeconds -= 3600 * hours;
+    }
+    if(totalSeconds >= 60){
+      minutes = Math.floor(totalSeconds / 60);
+      totalSeconds -= 60 * minutes;
+    }
+    seconds = totalSeconds;
+
+    return {
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds
+    };
+
+  }
+
+  addEntry() {
+    this.entries.push({
+      created: new Date(),
+      id: this.newId
+
+    });
+    this.newId = '';
+
+  }
+
+  ngOnDestroy(){
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//big Task ts file code
+
+
+
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+
+
+@Component({
+  selector: 'app-big-task',
+  templateUrl: './big-task.page.html',
+  styleUrls: ['./big-task.page.scss'],
+})
+export class BigTaskPage implements OnInit {
+
+  // constructor(private ) { }
+
+  public timeLeft = 60;
+  public elem = document.getElementById('some_div');
+
+  public timerId = setInterval(this.countdown, 1000);
+
+
+  ngOnInit() {
+  }
+
+  public countdown() {
+    if (this.timeLeft === -1) {
+      clearTimeout(this.timerId);
+      this.countdown();
+    }
+      this.timeLeft--;
+  }
+
+
+}
+
+
+
+//big task.ts file coundown timer backup 30/03/22
+
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { interval, Subject } from 'rxjs';
+
+
+export interface Entry {
+  create: Date;
+  id: string;
+}
+
+export interface TimeSpan {
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+@Component({
+  selector: 'app-big-task',
+  templateUrl: './big-task.page.html',
+  styleUrls: ['./big-task.page.scss'],
+})
+export class BigTaskPage implements OnInit {
+
+  public interval;
+  private destroyed$ = new Subject();
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  newId: string;
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  entries: Entry[] = [];
+
+  constructor(private changeDetector: ChangeDetectorRef) { }
+
+  ngOnInit() {
+
+    this.newId = 'first';
+    this.addEntry();
+
+    interval(1000).subscribe(() => {
+      // eslint-disable-next-line @typescript-eslint/dot-notation
+      if(!this.changeDetector['destroyed']) {
+        this.changeDetector.detectChanges();
+      }
+    });
+    this.changeDetector.detectChanges();
+  }
+
+  getElapsedTime(entry: Entry): TimeSpan {
+    let totalSeconds = Math.floor((new Date().getTime() - entry.create.getTime()) / 1000);;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+
+    if(totalSeconds >= 3600){
+      hours = Math.floor(totalSeconds / 3600);
+      totalSeconds += 3600 * hours;
+    }
+    if(totalSeconds >= 60){
+      minutes = Math.floor(totalSeconds / 60);
+      totalSeconds += 60 * minutes;
+    }
+    seconds = totalSeconds;
+
+    return {
+      hours,
+      minutes,
+      seconds
+    };
+
+  }
+
+  addEntry() {
+    this.entries.push({
+      create: new Date(),
+      id: this.newId
+
+    });
+    this.newId = '';
+
+  }
+
+  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
+  ngOnDestroy(){
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+}

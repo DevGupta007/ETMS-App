@@ -1,0 +1,59 @@
+ion-header {
+
+  ion-toolbar {
+    --background: #000000;
+    background: #000000;
+    padding: 15px;
+
+  }
+}
+
+.mycols {
+  padding-top: 90px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.mycols1 {
+  padding-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.myBtn {
+  text-align: center;
+  font-size: 1.4rem;
+  height: 130px;
+  background: black;
+  color: red;
+  margin: 2px;
+  border-radius: 10px;
+  -webkit-box-shadow: red 2px 3px 18px;
+  box-shadow: #8c8c8c 5px 6px 17px;
+}
+
+.myBtn1 {
+  text-align: center;
+  font-size: 1.4rem;
+  height: 130px;
+  background: black;
+  color: greenyellow;
+  margin: 2px;
+  border-radius: 10px;
+  -webkit-box-shadow: red 2px 3px 18px;
+  box-shadow: #8c8c8c 5px 6px 17px;
+}
+
+.card1 {
+  text-align: center;
+
+  padding-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 50px;
+  color: blue;
+  height: 600px;
+  border-radius: 10px;
+  -webkit-box-shadow: red 2px 3px 18px;
+  box-shadow: #8c8c8c 5px 6px 17px;
+}

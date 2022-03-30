@@ -1,0 +1,6 @@
+{
+	"appId": "com.mogiio.etmapp",
+	"appName": "ETM-App",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

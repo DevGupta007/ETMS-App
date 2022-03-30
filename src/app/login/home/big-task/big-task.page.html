@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Big Task Timer</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="text-align: center; padding-top: 150px;">
+  <div>
+    <br>
+    <h3>90 Minutes Timer For Big Tasks</h3>
+    <br>
+  </div>
+    <div>
+      <svg>
+        <circle r="90" cx="100" cy="100"></circle>
+      </svg>
+      <p style="margin-top: -110px;">{{timeLeftSec}} Seconds Left....</p>
+      <div style="margin-top: 110px;">
+        <!-- <ion-button (click)='onHomePage()'>Exit</ion-button> -->
+      </div>
+      <!-- <div class="mt-1 container">
+        <div class="form-group mt-4">
+          <div *ngFor="let entry of entries">
+            <span *ngIf="getElapsedTime(entry) as elapsed">
+              <h1>{{timeLeft}}S</h1>
+            </span>
+          </div>
+        </div>
+        </div> -->
+        <ion-badge color="warning">Dont Click on Cancle/Back button</ion-badge>
+        <ion-card-subtitle color="primary">Note: Once CountDown is Completed then <br>You will be redirected to home page automatically</ion-card-subtitle>
+    </div>
+</ion-content>

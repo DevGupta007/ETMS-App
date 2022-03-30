@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="apps"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; margin-top: 10px; color: #FFFFFF;" >
+      ETM-App
+      <p style="font-size: small;" >(Employee Time Management App)</p>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="bordered" fill="solid" color="light">
+        <ion-icon color="custom" name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-row>
+    <ion-col class="mycols">
+      <div class="myBtn">
+        <ion-icon style="margin-top: 10px;" class="largeIcon" name="Leaf"   item-start></ion-icon>
+        <p class="myHeader">Big Task</p>
+        <ion-button (click)="onBigPage()">Start</ion-button>
+      </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="mycols1">
+      <div class="myBtn1">
+        <ion-icon style="margin-top: 10px;" class="largeIcon" name="Leaf" item-start></ion-icon>
+        <p class="myHeader">Small Task</p>
+        <ion-button (click)="onSmallPage()">Start</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-card class="card1">
+    <ion-card-header color="blue">
+      <h1>Total Completed Task</h1>
+    </ion-card-header>
+    <ion-item>
+      <ion-label>Big Task</ion-label>
+      <ion-badge slot="end">4</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Small Task</ion-label>
+      <ion-badge slot="end">12</ion-badge>
+    </ion-item>
+  </ion-card>
+</ion-content>
+
+
+
+
+

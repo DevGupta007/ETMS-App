@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ETM-App</string>
+    <string name="title_activity_main">ETM-App</string>
+    <string name="package_name">com.mogiio.etmapp</string>
+    <string name="custom_url_scheme">com.mogiio.etmapp</string>
+</resources>

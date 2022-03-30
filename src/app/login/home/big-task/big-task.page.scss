@@ -1,0 +1,38 @@
+.basic-container {
+  margin-top: 50px;
+  align-items: center;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #333;
+}
+
+svg {
+  margin: auto;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+svg circle {
+  stroke-dasharray: 565px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 5px;
+  stroke: red;
+  fill: none;
+  animation: countdown 5400s linear infinite forwards;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 113px;
+  }
+}
