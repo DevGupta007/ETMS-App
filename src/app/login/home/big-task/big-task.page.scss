@@ -9,6 +9,23 @@ body {
   background-color: #333;
 }
 
+//CSS for Blinking Icon Start//
+.blink {
+      animation: blink 2s steps(5, start) infinite;
+      -webkit-animation: blink 1s steps(5, start) infinite;
+    }
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+    @-webkit-keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+    //CSS for Blinking Icon End//
+
 svg {
   margin: auto;
   top: 0;
@@ -33,6 +50,6 @@ svg circle {
     stroke-dashoffset: 0px;
   }
   to {
-    stroke-dashoffset: 113px;
+    stroke-dashoffset: 565px;
   }
 }

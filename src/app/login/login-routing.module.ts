@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'loginscreen',
     loadChildren: () => import('./loginscreen/loginscreen.module').then( m => m.LoginscreenPageModule)
+  },
+  {
+    path: 'livechat',
+    loadChildren: () => import('./livechat/livechat.module').then( m => m.LivechatPageModule)
   }
 ];
 

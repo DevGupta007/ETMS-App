@@ -1,18 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { interval, Subject } from 'rxjs';
+import { TasksService } from '../../../services/tasks/tasks.service';
+import { Insomnia } from '@awesome-cordova-plugins/insomnia/ngx';
 
-
-export interface Entry {
-  create: Date;
-  id: string;
-}
-
-export interface TimeSpan {
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
 
 @Component({
   selector: 'app-small-task',
@@ -20,91 +10,101 @@ export interface TimeSpan {
   styleUrls: ['./small-task.page.scss'],
 })
 export class SmallTaskPage implements OnInit {
-//for Countdown in Secondes
-  timeLeft = 900;
-  // interval;
-//for Countdown in Secondes end//
 
-  public route;
-  public interval;
-  private destroyed$ = new Subject();
+  // for Countdown in Secondes
+  timeLeftMin = 14;
+  timeLeftSec = 60;
+  count: any = 0;
+  interval;
 
+  //for Countdown in Secondes end//
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  newId: string;
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  entries: Entry[] = [];
-
-  constructor(private changeDetector: ChangeDetectorRef, route: Router) { }
+  constructor(
+    private insomnia: Insomnia,
+    private route: Router,
+    public tasksService: TasksService,
+  ) { }
 
   ngOnInit() {
-    this.startTimer();  //for Countdown in Secondes//
-    this.newId = 'first';
-    this.addEntry();
-
-    interval(1000).subscribe(() => {
-      // eslint-disable-next-line @typescript-eslint/dot-notation
-      if(!this.changeDetector['destroyed']) {
-        this.changeDetector.detectChanges();
-      }
-    });
-    this.changeDetector.detectChanges();
+    this.startInsomia();
+    this.startTimerMin();
+    this.startTimerSecond();
   }
-//for Countdown in Secondes
-  startTimer() {
+
+  //count down for minut
+  startTimerMin() {
     this.interval = setInterval(() => {
-      if(this.timeLeft > 0) {
-        this.timeLeft--;
+      if (this.timeLeftMin > 0) {
+        this.timeLeftMin--;
       } else {
-        this.timeLeft = 60;
+        this.timeLeftMin = 0;
+        this.count = localStorage.getItem('smallTaskCount');
+        this.count++;
+        localStorage.setItem('smallTaskCount', this.count);
+        this.tasksService.smallTaskFinished.emit();
+        this.playAudio();
+        this.showAlert();
       }
+    }, 1000 * 60);
+  }
+  //for Countdown in Secondes
+  startTimerSecond() {
+    this.interval = setInterval(() => {
+      if (this.timeLeftSec > 0) {
+        this.timeLeftSec--;
+      } else {
+        this.timeLeftSec = 59;
+
+      }
+    }, 1000);
+  }
+
+  // Keep Screen Awake Function till Timer 0 >> Start//
+  startInsomia() {
+    this.insomnia.keepAwake()
+      .then(
+        () => console.log('success'),
+        () => console.log('error')
+      );
+  }
+
+  stopInsomia() {
+    this.insomnia.allowSleepAgain()
+      .then(
+        () => console.log('success'),
+        () => console.log('error')
+      );
+  }
+  // Keep Screen Awake Function till Timer 0 >> Stop//
+
+  //Audio + Alert
+  playAudio() {
+    const audio = new Audio();
+    audio.src = '../../../../assets/5GY.mp3';
+    audio.muted = false;
+    audio.load();
+    audio.play();
+    audio.loop = true;
+  }
+
+  showAlert() {
+    setTimeout(() => {
+    window.confirm("Time's up");
+    this.goToHomePage();
+    this.ngOnDestroy();
     },1000);
   }
 
-
-  onHomePage() {
+  goToHomePage() {
     this.route.navigate(['home']);
-  }
-//for Countdown in Secondes end//
-
-  getElapsedTime(entry: Entry): TimeSpan {
-    let totalSeconds = Math.floor((new Date().getTime() - entry.create.getTime()) / 1000);;
-    let hours = 0;
-    let minutes = 0;
-    let seconds = 0;
-
-    if(totalSeconds >= 3600){
-      hours = Math.floor(totalSeconds / 3600);
-      totalSeconds -= 3600 * hours;
-    }
-    if(totalSeconds >= 60){
-      minutes = Math.floor(totalSeconds / 60);
-      totalSeconds -= 60 * minutes;
-    }
-    seconds = totalSeconds;
-
-    return {
-      hours,
-      minutes,
-      seconds
-    };
-
+    // window.location.href = '/home';
   }
 
-  addEntry() {
-    this.entries.push({
-      create: new Date(),
-      id: this.newId
-
-    });
-    this.newId = '';
-
+  ngOnDestroy() {
+    // this.playAudio();
+    // console.log(this.playAudio);
+    this.stopInsomia();
+    window.location.href = '/home';
+    console.log('destroyed');
   }
-
-  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
-  ngOnDestroy(){
-    this.destroyed$.next();
-    this.destroyed$.complete();
-  }
-
 }

@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.mogiio.etmapp',
-  appName: 'ETM-App',
+  appId: 'com.mogiio.ctm',
+  appName: 'CTM',
   webDir: 'www',
   bundledWebRuntime: false
 };

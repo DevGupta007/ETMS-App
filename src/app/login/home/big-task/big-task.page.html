@@ -10,27 +10,35 @@
 <ion-content style="text-align: center; padding-top: 150px;">
   <div>
     <br>
-    <h3>90 Minutes Timer For Big Tasks</h3>
+    <h3>90 Minute Timer For Big Tasks</h3>
     <br>
   </div>
-    <div>
-      <svg>
-        <circle r="90" cx="100" cy="100"></circle>
-      </svg>
-      <p style="margin-top: -110px;">{{timeLeftSec}} Seconds Left....</p>
-      <div style="margin-top: 110px;">
-        <!-- <ion-button (click)='onHomePage()'>Exit</ion-button> -->
-      </div>
-      <!-- <div class="mt-1 container">
-        <div class="form-group mt-4">
-          <div *ngFor="let entry of entries">
-            <span *ngIf="getElapsedTime(entry) as elapsed">
-              <h1>{{timeLeft}}S</h1>
-            </span>
-          </div>
-        </div>
-        </div> -->
-        <ion-badge color="warning">Dont Click on Cancle/Back button</ion-badge>
-        <ion-card-subtitle color="primary">Note: Once CountDown is Completed then <br>You will be redirected to home page automatically</ion-card-subtitle>
+  <div>
+    <svg>
+      <circle r="90" cx="100" cy="100"></circle>
+    </svg>
+    <div style="margin-top: -150px; margin-bottom: 110px;">
+      <ion-icon class="blink" size="large" name="heart"></ion-icon>
+      <h1>{{timeLeftMin}} : {{timeLeftSec}}</h1>
     </div>
+    <div>
+      <ion-card-subtitle color="primary">Note: Once CountDown is Completed then
+        <br>You will be redirected to home page automatically
+      </ion-card-subtitle>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 200px;">
+    <ion-badge color="warning">Warning : Don't Click on Cancle/Back button</ion-badge>
+    <ion-badge color="danger">OtherWise your Task will not be Counted as Complete</ion-badge>
+  </div>
+  <!-- <ion-button (click)="playAudio()" >play audio</ion-button> -->
+  <!-- <audio src="../../../../assets/7.mp3" autoplay loop></audio> -->
 </ion-content>
+
+<!-- Footer Start  -->
+<ion-footer style="text-align: center; size: 10px;">
+  <ion-toolbar>
+    <ion-card-subtitle>Made with<ion-icon name="heart"></ion-icon> by Mogi I/O </ion-card-subtitle>
+  </ion-toolbar>
+</ion-footer>
+<!-- Footer End -->

@@ -23,7 +23,10 @@ const routes: Routes = [
     path: 'small-task',
     loadChildren: () => import('./login/home/small-task/small-task.module').then( m => m.SmallTaskPageModule)
   },
-
+  {
+    path: 'livechat',
+    loadChildren: () => import('./login/livechat/livechat.module').then( m => m.LivechatPageModule)
+  },
 ];
 
 @NgModule({

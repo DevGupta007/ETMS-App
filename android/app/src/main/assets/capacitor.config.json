@@ -1,6 +1,6 @@
 {
-	"appId": "com.mogiio.etmapp",
-	"appName": "ETM-App",
+	"appId": "com.mogiio.ctm",
+	"appName": "CTM",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }
